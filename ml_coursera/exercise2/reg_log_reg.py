@@ -117,7 +117,6 @@ def plotDecisionBoundary(theta, X, y):
 plotDecisionBoundary(theta, X, y)
 plt.show()
 #-------------------------------------------------    
-quit()
 
 #----------predict------------------------------------------------------------------------
 x0, x1, x2 = 1, 45, 85
