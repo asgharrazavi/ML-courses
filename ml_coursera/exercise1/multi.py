@@ -87,4 +87,5 @@ invXX = np.dot(invX,X.T)
 print "invXX.shape", invXX.shape
 theta = np.dot(invXX,y)
 print "theta:", theta
+#------------------------------------------------------------------
 
