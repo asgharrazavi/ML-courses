@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#-------------------------------#
+#  Regularized Gradient Desent  #
+#-------------------------------#
+
 #---------------loading data-----------------------
 def plot(x,y):
     admitted = (y == 1)
