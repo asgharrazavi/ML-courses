@@ -21,4 +21,4 @@ def grad(theta):
 init_theta = np.zeros(2)
 out = fmin_bfgs(func,init_theta,grad,maxiter=10)
 
-print out
+#print out
