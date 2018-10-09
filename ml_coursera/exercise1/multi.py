@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #-------------------------------#
-#       Linear Regression   	#
+#       Linear Regression      	#
 #-------------------------------#
 
 def featureNormalize(X):
