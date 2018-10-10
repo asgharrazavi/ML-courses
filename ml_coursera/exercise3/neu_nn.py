@@ -6,7 +6,7 @@ import copy
 
 
 #-----------loading data----------------
-data = io.loadmat('ex3/ex3data1.mat')
+data = io.loadmat('ex3data1.mat')
 print data.keys()
 y = data['y']
 x = data['X']
@@ -15,7 +15,7 @@ print "data['y'].shape, data['X'].shape:", data['y'].shape, data['X'].shape
 #--------------------------------------
 
 #--------------load neural network parameters----------
-data = io.loadmat('ex3/ex3weights.mat')
+data = io.loadmat('ex3weights.mat')
 Theta1 = data['Theta1']
 Theta2 = data['Theta2']
 print "Theta1.shape, Theta2.shape:", Theta1.shape, Theta2.shape
