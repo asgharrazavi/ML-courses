@@ -91,9 +91,9 @@ num_labels = len(np.unique(y))
 init_theta = np.zeros(X.shape[1])
 y = y[:,0]
 print "X.shape, y.shape:", X.shape, y.shape
-#all_theta = oneVsAll(X, y, num_labels, lambdaa, alpha, n_iters)
-#print all_theta
-#np.savetxt('all_theta.txt',all_theta)
+all_theta = oneVsAll(X, y, num_labels, lambdaa, alpha, n_iters)
+print all_theta
+np.savetxt('all_theta.txt',all_theta)
 #----------------------------------------------------------------------------------------------------------------------------
 
 #------------Predict-------------------
