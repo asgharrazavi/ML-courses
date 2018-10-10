@@ -6,7 +6,7 @@ import copy
 
 
 #-----------loading data----------------
-data = io.loadmat('ex3/ex3data1.mat')
+data = io.loadmat('ex3data1.mat')
 print data.keys()
 y = data['y']
 X = data['X']
