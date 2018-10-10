@@ -1,1 +1,1 @@
-## Python Scripts for Machine Learning Courses
+## Python Scripts for Coursera Machine Learning course by Andrew Ng
