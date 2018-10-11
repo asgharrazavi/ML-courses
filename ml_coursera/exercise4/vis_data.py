@@ -6,7 +6,7 @@ import copy
 from matplotlib.colors import LogNorm
 
 #-----------loading data----------------
-data = io.loadmat('ex4/ex4data1.mat')
+data = io.loadmat('ex4data1.mat')
 print data.keys()
 y = data['y']                                   #shape : (5000,1)
 x = data['X']                                   #shape : (5000, 400)
