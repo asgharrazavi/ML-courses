@@ -12,8 +12,8 @@ from matplotlib.colors import LogNorm
 #-----------loading data----------------
 data = io.loadmat('ex4/ex4data1.mat')
 print data.keys()
-y = data['y']					#shape : (5000,1)
-x = data['X']					#shape : (5000, 400)
+y = data['y']					# shape : (5000,1)
+x = data['X']					# shape : (5000, 400)
 # adding bias vector
 #X = np.c_[np.ones(x.shape[0]),x]
 print "y.shape, x.shape:", y.shape, x.shape
@@ -21,8 +21,8 @@ print "y.shape, x.shape:", y.shape, x.shape
 
 #--------------load neural network parameters----------
 data = io.loadmat('ex4/ex4weights.mat')
-Theta1 = data['Theta1']			 	#shape: (25,401)
-Theta2 = data['Theta2']				#shape: (10,26)
+Theta1 = data['Theta1']			 	# shape: (25,401)
+Theta2 = data['Theta2']				# shape: (10,26)
 print "Theta1.shape, Theta2.shape:", Theta1.shape, Theta2.shape
 #------------------------------------------------------
 
@@ -51,17 +51,17 @@ def sigmoidGradient(z):
     return sigmoid(z) * (1 - sigmoid(z))
 
 def randInitializeWeights(L_out, L_in):
-    epsilon_init = 0.12			    # This number comes from: ( sqrt(6) / (sqrt{(# of layers before)+(# of layers after)}) )
+    epsilon_init = 0.12			    	# This number comes from: ( sqrt(6) / (sqrt{(# of layers before)+(# of layers after)}) )
     return np.random.random((L_out, 1 + L_in)) * 2 * epsilon_init - epsilon_init
 
 def debug_randInitializeWeights(L_out, L_in):
     return np.reshape(np.sin(range(L_out * (1 + L_in))),(L_out, 1 + L_in))
 
-def _h_theta(nn_params, X):                 # Theta1: (25,401), Theta2: (10,26), X: (5000,401)
+def _h_theta(nn_params, X):                 	# Theta1: (25,401), Theta2: (10,26), X: (5000,401)
     for i in range(len(nn_params)):
 	if i == 0:  zz = np.dot(nn_params[i],X.T).T ; aa = sigmoid(zz)
 	else: aa = np.c_[np.ones(aa.shape[0]),aa]; zz = np.dot(nn_params[i],aa.T).T ; aa = sigmoid(zz)
-    a3 = aa                                 # for DEBUGing: a3.shape: (5000,10)
+    a3 = aa                                 	# for DEBUGing: a3.shape: (5000,10)
     return a3
 
 def _fix_y(y,num_labels):
@@ -111,7 +111,7 @@ def nnBackPro(nn_params, input_layer_size, hidden_layer_size, num_labels, X, y, 
     return np.array(D)
 
 def _reshape_theta(theta, input_layer_size, hidden_layer_size, num_labels):
-    #Theta1: (25,401), Theta2: (10,26), X: (5000,401)
+    # For DEBUGing: Theta1: (25,401), Theta2: (10,26), X: (5000,401)
     theta1 = np.reshape(theta[0:hidden_layer_size*(input_layer_size + 1)],(hidden_layer_size,input_layer_size + 1))
     theta2 = np.reshape(theta[hidden_layer_size*(input_layer_size + 1):] ,(num_labels, hidden_layer_size + 1))
     return [theta1, theta2]
