@@ -9,7 +9,6 @@ from matplotlib.colors import LogNorm
 #   Vectorized Neural Netwrok   #
 #-------------------------------#
 
-
 #-----------loading data----------------
 data = io.loadmat('ex4/ex4data1.mat')
 print data.keys()
