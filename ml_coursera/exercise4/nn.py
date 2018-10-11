@@ -9,7 +9,6 @@ from matplotlib.colors import LogNorm
 #       Neural Netwrok          #
 #-------------------------------#
 
-
 #-----------loading data----------------
 data = io.loadmat('ex4/ex4data1.mat')
 print data.keys()
@@ -52,17 +51,17 @@ def sigmoidGradient(z):
     return sigmoid(z) * (1 - sigmoid(z))
 
 def randInitializeWeights(L_out, L_in):
-    epsilon_init = 0.12			# This number comes from: ( sqrt(6) / (sqrt{(# of layers before)+(# of layers after)}) )
+    epsilon_init = 0.12			    # This number comes from: ( sqrt(6) / (sqrt{(# of layers before)+(# of layers after)}) )
     return np.random.random((L_out, 1 + L_in)) * 2 * epsilon_init - epsilon_init
 
 def debug_randInitializeWeights(L_out, L_in):
     return np.reshape(np.sin(range(L_out * (1 + L_in))),(L_out, 1 + L_in))
 
-def _h_theta(nn_params, X):                 #Theta1: (25,401), Theta2: (10,26), X: (5000,401)
+def _h_theta(nn_params, X):                 # Theta1: (25,401), Theta2: (10,26), X: (5000,401)
     for i in range(len(nn_params)):
 	if i == 0:  zz = np.dot(nn_params[i],X.T).T ; aa = sigmoid(zz)
 	else: aa = np.c_[np.ones(aa.shape[0]),aa]; zz = np.dot(nn_params[i],aa.T).T ; aa = sigmoid(zz)
-    a3 = aa                            #a3.shape: (5000,10)
+    a3 = aa                                 # for DEBUGing: a3.shape: (5000,10)
     return a3
 
 def _fix_y(y,num_labels):
