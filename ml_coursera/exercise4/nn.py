@@ -10,6 +10,7 @@ data = io.loadmat('ex4/ex4data1.mat')
 print data.keys()
 y = data['y']					#shape : (5000,1)
 x = data['X']					#shape : (5000, 400)
+# adding bias vector
 #X = np.c_[np.ones(x.shape[0]),x]
 print "y.shape, x.shape:", y.shape, x.shape
 #--------------------------------------
