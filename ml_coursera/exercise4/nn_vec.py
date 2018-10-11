@@ -10,7 +10,7 @@ from matplotlib.colors import LogNorm
 #-------------------------------#
 
 #-----------loading data----------------
-data = io.loadmat('ex4/ex4data1.mat')
+data = io.loadmat('ex4data1.mat')
 print data.keys()
 y = data['y']					#shape : (5000,1)
 x = data['X']					#shape : (5000, 400)
@@ -19,7 +19,7 @@ print "y.shape, x.shape:", y.shape, x.shape
 #--------------------------------------
 
 #--------------load neural network parameters----------
-data = io.loadmat('ex4/ex4weights.mat')
+data = io.loadmat('ex4weights.mat')
 Theta1 = data['Theta1']			 	#shape: (25,401)
 Theta2 = data['Theta2']				#shape: (10,26)
 print "Theta1.shape, Theta2.shape:", Theta1.shape, Theta2.shape
