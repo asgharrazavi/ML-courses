@@ -5,6 +5,11 @@ import scipy.optimize as op
 import copy
 from matplotlib.colors import LogNorm
 
+#-------------------------------#
+#       Neural Netwrok          #
+#-------------------------------#
+
+
 #-----------loading data----------------
 data = io.loadmat('ex4/ex4data1.mat')
 print data.keys()
