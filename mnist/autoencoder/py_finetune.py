@@ -74,12 +74,10 @@ def _h_theta2(W1, b1, W2, b2, W3, b3, W4, b4, W5, b5, W6, b6, W7, b7, W8, b8 ,X)
     B3 = np.array([b3[:,0] for i in range(X.shape[0])]) ; B4 = np.array([b4[:,0] for i in range(X.shape[0])])
     B5 = np.array([b5[:,0] for i in range(X.shape[0])]) ; B6 = np.array([b6[:,0] for i in range(X.shape[0])])
     B7 = np.array([b7[:,0] for i in range(X.shape[0])]) ; B8 = np.array([b8[:,0] for i in range(X.shape[0])])
-#    print "B1, B2, B3, B4, B5, B6, B7, B8:", B1.shape, B2.shape, B3.shape, B4.shape, B5.shape, B6.shape, B7.shape, B8.shape
     z2 = np.dot(W1,a1.T).T + B1; a2 = sigmoid(z2) 
     z3 = np.dot(W2,a2.T).T + B2; a3 = sigmoid(z3) 
     z4 = np.dot(W3,a3.T).T + B3; a4 = sigmoid(z4) 
     z5 = np.dot(W4,a4.T).T + B4; a5 = sigmoid(z5) 
-#    print "shapes: z2, z3, z4, z5, a1, a2, a3, a4, a5 ", z2.shape, z3.shape, z4.shape, z5.shape, a1.shape, a2.shape, a3.shape, a4.shape, a5.shape
     z6 = np.dot(W5,a5.T).T + B5; a6 = sigmoid(z6) 
     z7 = np.dot(W6,a6.T).T + B6; a7 = sigmoid(z7) 
     z8 = np.dot(W7,a7.T).T + B7; a8 = sigmoid(z8) 
@@ -90,7 +88,6 @@ def _add_regCost(W8, W7 ,y,lambdaa):
     m = float(len(y))
     reg_j = 0
     reg_j += np.sum(W8**2)  
-#    reg_j += np.sum(W7**2)  
     reg_j = (lambdaa/(2.0)) * reg_j
     return reg_j
 
