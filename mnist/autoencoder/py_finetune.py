@@ -197,7 +197,6 @@ if debug:
     initial_nn_params = [w1,b1, w2,b2, w3,b3, w4,b4,   w5,b5, w6,b6, w7,b7, w8,b8]
     theta = []
     for i in range(len(initial_nn_params)): theta.extend(initial_nn_params[i].flatten())
-#    print "debug n_samples, inputsize, hidensize, n_labels:", X.shape[0], inputSize, hiddenSize, 2
     print "debug X shape:", X.shape
     print "debug sizes, input, L1, L2, L3, L4:", inputSize, hiddenSize1, hiddenSize2, hiddenSize3, hiddenSize4
 
@@ -242,7 +241,6 @@ hiddenSizeL2 = 200
 sparsityParam = 0.1
 beta = 0.1
 X = images[:,::10].T
-#X = images.T
 y = labels
 #--------------------
 
