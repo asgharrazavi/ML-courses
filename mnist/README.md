@@ -1,1 +1,1 @@
-## Python Scripts for Machine Learning Courses
+## Python Scripts for unsupervised dimentionality reduction using Autoencoders and RBMs
