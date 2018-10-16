@@ -7,20 +7,9 @@ if len(sys.argv) < 4:
     """ %sys.argv[0]
     quit()
 import numpy as np
-#import scipy.io as io
-#import matplotlib.pyplot as plt
 import scipy.optimize as op
-#from matplotlib.colors import LogNorm
-#import matplotlib.gridspec as gridspec
-#from matplotlib import rcParams
-#rcParams.update({'figure.autolayout': True})
 import h5py
-#import mdtraj.io as ioo
-#from py_stl import *
-#from py_softmax_vec import *
-#from plot_theta2 import *
 import time
-#nProc = multiprocessing.cpu_count()
 
 
 hiddensize1 = int(sys.argv[1])
@@ -28,10 +17,8 @@ hiddensize2 = int(sys.argv[2])
 hiddensize3 = int(sys.argv[3])
 
 #--------load data------------------
-images = np.array(h5py.File('/Users/asr2031/Dropbox/papers/ANNs/mnist_data/train_images.h5').get('arr_0')).T / 255.
-labels = np.array(h5py.File('/Users/asr2031/Dropbox/papers/ANNs/mnist_data/train_labels.h5').get('arr_0'))
-#images = np.array(h5py.File('mnist_images.h5').get('arr_0')).T #/ 255.
-#labels = np.array(h5py.File('mnist_labels.h5').get('arr_0'))
+images = np.array(h5py.File('train_images.h5').get('arr_0')).T / 255.
+labels = np.array(h5py.File('train_labels.h5').get('arr_0'))
 print "mnist images.shape, labels.shape:", images.shape, labels.shape
 #-----------------------------------
 
