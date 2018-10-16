@@ -102,10 +102,8 @@ def sparseAutoencoderCost(theta, shapes, x, lambdaa ,sparsityParam, beta, do_res
     x_y = np.array([np.sum((a9[i] - x[i])**2) for i in range(a9.shape[0])])
     cost = (1.0/m) * np.sum(0.5 * x_y)
     cost += _add_regCost(W8,W7, x,lambdaa) 
-#    print cost
 
     #gradiant
-#    delta9 = -1 * (a9 - x) * a9 * (1 - a9)
     delta9 = 1 * (a9 - x) * a9 * (1 - a9)
     delta8 = (np.dot(W8[:,:].T,delta9.T).T ) * a8[:,:] * (1 - a8[:,:])
     delta7 = (np.dot(W7[:,:].T,delta8.T).T ) * a7[:,:] * (1 - a7[:,:])
@@ -163,7 +161,6 @@ def computeNumericalGradient(theta, shapes, X, lambdaa ,sparsityParam, beta, do_
     for p in range(len(unrolled_theta)):
         if p%500 == 0: print p, "percent completed:", p*100/len(unrolled_theta)
         perturb[p] = e
-# 	print "len(unrolled_theta - perturb):", len(unrolled_theta - perturb)
         loss1 = sparseAutoencoderCost(theta - perturb, shapes, X, lambdaa ,sparsityParam, beta, do_reshape_theta=True, debug=False)[0]
         loss2 = sparseAutoencoderCost(theta + perturb, shapes, X, lambdaa ,sparsityParam, beta, do_reshape_theta=True, debug=False)[0]
         numgrad[p] = (loss2 - loss1) / (2.0*e)
