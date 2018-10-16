@@ -293,7 +293,5 @@ def train_stackedAE():
     np.savetxt('trained_b4_ft_%s.txt' %po_fix,b4)
 
 train_stackedAE()
-#stackedAEcost(theta,inputSize, hiddenSizeL1, hiddenSizeL2, numClasses, X, y, lambdaa, sparsityParam, beta)
-#stackedAEgrad(theta,inputSize, hiddenSizeL1, hiddenSizeL2, numClasses, X, y, lambdaa, sparsityParam, beta)
 #=============================================================
 
