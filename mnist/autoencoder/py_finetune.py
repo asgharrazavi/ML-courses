@@ -39,9 +39,6 @@ def load_thetas():
     print "W1_l3, b1_l3, W2_l3, b2_l3:", W1_l3.shape, b1_l3.shape, W2_l3.shape, b2_l3.shape
     print "W1_l4, b1_l4, W2_l4, b2_l4:", W1_l4.shape, b1_l4.shape, W2_l4.shape, b2_l4.shape
     return W1_l1[:,1:], b1_l1, W1_l2[:,1:], b1_l2, W1_l3[:,1:], b1_l3, W1_l4[:,1:], b1_l4
-
-#w1, b1, w2, b2, w3, b3, w4, b4 = load_thetas()
-#print "w1, b1, w2, b2, w3, b3, w4, b4 :", w1.shape, b1.shape, w2.shape, b2.shape, w3.shape, b3.shape, w4.shape, b4.shape
 #------------------------------------------------------------
 
 #======================fine tuning===========================
