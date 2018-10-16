@@ -11,8 +11,8 @@ import h5py
 import mdtraj.io as ioo
 
 #--------load data------------------
-images = np.array(h5py.File('/Users/asr2031/Dropbox/papers/ANNs/mnist_data/train_images.h5').get('arr_0')).T / 255.
-labels = np.array(h5py.File('/Users/asr2031/Dropbox/papers/ANNs/mnist_data/train_labels.h5').get('arr_0'))
+images = np.array(h5py.File('train_images.h5').get('arr_0')).T / 255.
+labels = np.array(h5py.File('train_labels.h5').get('arr_0'))
 print "mnist images.shape, labels.shape:", images.shape, labels.shape
 #-----------------------------------
 
