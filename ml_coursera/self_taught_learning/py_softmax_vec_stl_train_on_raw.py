@@ -34,13 +34,6 @@ trainLabels = train_test_lab[0:numTrain]
 testData = train_test_img[:,numTrain:]
 testLabels = train_test_lab[numTrain:]
 
-
-#trainData   = images[:, labeledSet[0:numTrain]]
-#trainLabels = labels[labeledSet[0:numTrain]]
-
-#testData   = images[:, labeledSet[numTrain:]]
-#testLabels = labels[labeledSet[numTrain:]]
-
 # Output Some Statistics
 print '# examples in unlabeled set: %d\n' %unlabeledData.shape[1]                       # 29404 
 print '# examples in supervised training set: %d\n\n' %trainData.shape[1]               # 7824                          
