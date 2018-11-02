@@ -10,8 +10,8 @@ def rbm(X,n_inp,n_hid,last_RBM=False):
     ------
     w: flaot, weight matrix, 2d array, shape=(n_inp,n_hid)
     v: float, visable layer biases, 2d array, shape=(1,n_inp)
-    h: float, hidden layer biases, 2d array, shape=(1,n_inp) 
-    batchposhidprobs:
+    h: float, hidden layer biases, 2d array, shape=(1,n_hid) 
+    batchposhidprobs: flaot, weight matrix, 2d array, shape=(n_inp,n_hid)
     """
 
     print "data.shape:", X.shape
