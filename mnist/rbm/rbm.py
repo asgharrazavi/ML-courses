@@ -11,7 +11,6 @@ def rbm(X,n_inp,n_hid,last_RBM=False):
     w: flaot, weight matrix, 2d array, shape=(n_inp,n_hid)
     v: float, visable layer biases, 2d array, shape=(1,n_inp)
     h: float, hidden layer biases, 2d array, shape=(1,n_hid) 
-    batchposhidprobs: flaot, weight matrix, 2d array, shape=(n_inp,n_hid)
     """
 
     print "data.shape:", X.shape
@@ -66,6 +65,6 @@ def rbm(X,n_inp,n_hid,last_RBM=False):
         if e % 5 == 0 or e == epochs - 1: print "epoch:%d,    \terror:%1.2e" %(e,err_sum)
     print "shapes:, w, v, h", w.shape, v.shape, h.shape
     print "batchposhidprobs: min,max", np.min(batchposhidprobs), np.max(batchposhidprobs)
-    return w,v,h, batchposhidprobs
+    return w, v, h
 
 
