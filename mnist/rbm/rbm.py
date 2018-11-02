@@ -1,7 +1,7 @@
 def rbm(X,n_inp,n_hid,last_RBM=False):
     """
     inputs:
-    X: 2d array, float
+    X: float, 2d array, shape=(number of samples,n_inp) 
     n_inp: int, number of nodes for the input layer
     n_hid: int, number of nodes for the hidden layer
     """
