@@ -1,8 +1,8 @@
 def rbm(X,n_inp,n_hid,last_RBM=False):
     """
     inputs:
-    n_inp: int, number of input layers
-    n_hid: int 
+    n_inp: int, number of nodes for the input layer
+    n_hid: int, number of nodes for the hidden layer
     """
 
     print "data.shape:", X.shape
