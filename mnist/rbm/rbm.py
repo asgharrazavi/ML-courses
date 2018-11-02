@@ -64,7 +64,6 @@ def rbm(X,n_inp,n_hid,last_RBM=False):
             h = h + new_h
         if e % 5 == 0 or e == epochs - 1: print "epoch:%d,    \terror:%1.2e" %(e,err_sum)
     print "shapes:, w, v, h", w.shape, v.shape, h.shape
-    print "batchposhidprobs: min,max", np.min(batchposhidprobs), np.max(batchposhidprobs)
     return w, v, h
 
 
