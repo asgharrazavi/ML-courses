@@ -14,6 +14,7 @@ def rbm(X,n_inp,n_hid,last_RBM=False):
 
     Notes:
     -----
+    if last_RBM=True: don't do the random binary assignments 
     """
 
     print "data.shape:", X.shape
