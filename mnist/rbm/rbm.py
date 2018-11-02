@@ -2,6 +2,7 @@ def rbm(X,n_inp,n_hid,last_RBM=False):
     """
     inputs:
     n_inp: int, number of input layers
+    n_hid: int 
     """
 
     print "data.shape:", X.shape
