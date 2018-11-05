@@ -17,7 +17,7 @@ def rbm(X,n_inp,n_hid,last_RBM=False):
     if last_RBM=True: don't do the random binary assignments 
     """
 
-    print "data.shape:", X.shape
+    print "input data.shape:", X.shape
     w = np.random.normal(loc=0.0,scale=0.1,size=(n_inp,n_hid))
     v = np.zeros((1,n_inp))
     h = np.zeros((1,n_hid))
