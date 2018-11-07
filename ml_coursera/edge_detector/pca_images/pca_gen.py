@@ -107,8 +107,6 @@ k = k - 1
 plt.imshow(cov)
 plt.show()
 print "number of pca components for 99 percent contribution to total fluctuation:", k
-#plt.plot(vals)
-#plt.show()
 #-----------------------------------------------------------------------------------------------
 
 #-----------xHat---------------------
