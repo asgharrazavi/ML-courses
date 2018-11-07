@@ -3,8 +3,6 @@ import matplotlib.pyplot as plt
 import scipy.io as io
 from matplotlib.colors import LogNorm
 import matplotlib.gridspec as gridspec
-#from matplotlib import rcParams
-#rcParams.update({'figure.autolayout': True})
 
 #---------------- loading data -----------------------
 data = io.loadmat('pca_exercise/IMAGES_RAW.mat')
