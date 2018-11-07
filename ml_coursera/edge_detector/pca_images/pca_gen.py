@@ -92,12 +92,8 @@ patches = get_patches()
 #---------PCA----------------------------------------------------------------------------------
 def pca(patches):
     cov = np.dot(patches,patches.T) / float(patches.shape[1])
-#    u, s, v = np.linalg.svd(cov)
     s, u = np.linalg.eigh(cov)
     print "eigenvalues.shape, eigenvectors.shape:", s.shape, u.shape
-#    plt.imshow(u,cmap='Blues')
-#    plt.ylim([0,u.shape[0]])
-#    plt.show()
     return cov, u, s
 cov, vecs, vals = pca(patches)
 contr = vals / float(np.sum(vals))
