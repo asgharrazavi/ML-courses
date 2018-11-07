@@ -118,6 +118,6 @@ def plot_pca_white(vecs,k,patches,num=100):
     print "xrot.shape:", xrot.shape			#(144, 10000)
     display_patches(patches,'rotated_all_vecs.png',num=100)
 
-#plot_pca_white(vecs,k,patches)
+plot_pca_white(vecs,k,patches)
 
 
