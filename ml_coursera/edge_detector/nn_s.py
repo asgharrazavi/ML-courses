@@ -165,7 +165,6 @@ def sparseAutoencoderCost(theta, input_layer_size, hidden_layer_size, num_labels
 def nnBackPro(theta, input_layer_size, hidden_layer_size, num_labels, X, y, lambdaa ,sparsityParam, beta, reshape_theta=True, debug=False):
     if reshape_theta : nn_params = _reshape_theta(theta, input_layer_size, hidden_layer_size, num_labels)
     X = np.c_[np.ones(X.shape[0]),X]
-#    print "nnBackPro X.shape, y.shape:", X.shape, y.shape						#(50, 65) (50, 1)  :(# of samples, #of nodes+1) , (# of samples, 1))
     m = len(y)
     yy = _fix_y(y,num_labels)
     D1, D2 = 0, 0
@@ -174,35 +173,25 @@ def nnBackPro(theta, input_layer_size, hidden_layer_size, num_labels, X, y, lamb
     	z2 = np.dot(W1,X.T).T
     	a2 = sigmoid(z2)
     	ro_h = np.mean(a2,axis=0) 
-#	print "W1.shape, a2.shape, ro_h.shape:", W1.shape, a2.shape, ro_h.shape             		#(25, 65), (50, 25) , (25,)
 	ro_H = np.array([ro_h for i in range(a2.shape[0])])
-#	print "ro_H.shape:", ro_H.shape									#(50,25)
 	return ro_H.T
     ro_h = __get_ro_h(nn_params[0],X)
-#    print "nn_params[0].shapen nn_params[1].shape:", nn_params[0].shape, nn_params[1].shape		#(25, 65) (50, 26)
     a1 = X
     z2 = np.dot(nn_params[0],a1.T)
     a2 = sigmoid(z2)
     a2 = np.concatenate((np.ones((1,a2.shape[1])),a2))
-#    print "a2.shape", a2.shape
     z3 = np.dot(nn_params[1],a2)
     a3 = sigmoid(z3)
-#    print "a1.shape, a2.shape, a3.shape:", a1.shape, a2.shape, a3.shape					#(50, 65) (26, 50) (50, 50)
     ind1, ind2 = (ro_h == 0) , (ro_h == 1)
     ro_h[ind1] = 1e-10
     ro_h[ind2] = 1-1e-10
     kl_term = beta * ( (float(1-ro)/(1-ro_h)) - (ro/ro_h) )
     delta3 = a3 - yy
-#    print "yy.shape:", yy.shape										#(50,50)
     g_prime_z2 = sigmoidGradient(z2)
-#    print "g_prime_z2.shape" ,g_prime_z2.shape								#(25, 50)
     delta2_term1 =  (np.dot(nn_params[1][:,1:].T,delta3) + kl_term)
-#    print "delta2_term1.shape:", delta2_term1.shape							#(25, 50)
     delta2 = delta2_term1 * g_prime_z2	
-#    print "delta2.shape:", delta2.shape									#(25, 50)
     D1 = np.dot(delta2, a1)
     D2 = np.dot(delta3, a2.T)
-#    print "D1.shape, D2.shape:", D1.shape, D2.shape							#(25, 65) (50, 26)
     D1 = (1.0/m) * D1
     D2 = (1.0/m) * D2
     D1[:,1:] = D1[:,1:] + (float(lambdaa)/m) * nn_params[0][:,1:]              				# reqularizing all output nodes and 1:all input nodes
@@ -286,7 +275,6 @@ def train_nn():
         unrolled_theta.extend(nn_params[i].flatten())
     print "X.shape, y.shape:", X.shape, y.shape
     out = op.fmin_l_bfgs_b(sparseAutoencoderCost,unrolled_theta,nnBackPro,args=(input_layer_size, hidden_layer_size, num_labels, X, y, lambdaa, sparsityParam, beta),maxfun=MaxIter, disp=1)
-#    out = op.fmin_cg(sparseAutoencoderCost,unrolled_theta,nnBackPro,args=(input_layer_size, hidden_layer_size, num_labels, X, y, lambdaa, sparsityParam, beta),full_output=1,maxiter=MaxIter, disp=1)
     Theta1, Theta2 = _reshape_theta(out[0], input_layer_size, hidden_layer_size, num_labels)
     np.savetxt('trained_theta1_10000.txt',Theta1)
     np.savetxt('trained_theta2_10000.txt',Theta2)
