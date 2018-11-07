@@ -278,7 +278,7 @@ def train_nn():
     Theta1, Theta2 = _reshape_theta(out[0], input_layer_size, hidden_layer_size, num_labels)
     np.savetxt('trained_theta1_10000.txt',Theta1)
     np.savetxt('trained_theta2_10000.txt',Theta2)
-#train_nn()
+train_nn()
 #===================================================================================================================================================================
 
 #--------------Display Theta1------------
