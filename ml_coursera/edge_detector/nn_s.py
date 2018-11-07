@@ -41,7 +41,6 @@ np.savetxt('patches.txt',patches)
 patches2 = np.array([patches[:,i] - np.mean(patches[:,i]) for i in range(patches.shape[1]) ]).T
 pstd3 = 3 * np.std(patches2.flatten())
 print "min max. mini-av max-av, std3:", np.min(patches), np.max(patches), np.min(patches2), np.max(patches2), pstd3
-#print "np.min(patches2/pstd3), np.max(patches2/pstd3):", np.min(patches2/pstd3), np.max(patches2/pstd3)
 patches = (patches2 + abs(np.min(patches2))) 
 patches = patches / np.max(patches)
 print "min, max:", np.min(patches), np.max(patches)
@@ -92,14 +91,16 @@ def initializeParameters(hidden_layer_size, input_layer_size):
 #============================================================sparseAutoencoderCost===================================================================================
 def sigmoid(z):
     return 1.0 / (1 + np.exp(-z))
+
 def sigmoidGradient(z):
     return sigmoid(z) * (1 - sigmoid(z))
+
 def randInitializeWeights(L_out, L_in):
     epsilon_init = 0.12                 # This number comes from: ( sqrt(6) / (sqrt{(# of layers before)+(# of layers after)}) )
     return np.random.random((L_out, 1 + L_in)) * 2 * epsilon_init - epsilon_init
+
 def debug_randInitializeWeights(L_out, L_in):
     return np.reshape(np.sin(range(L_out * (1 + L_in))),(L_out, 1 + L_in))
-
 
 def _h_theta(nn_params, X):                 #E.g. Theta1: (25,401), Theta2: (10,26), X: (5000,401)
     for i in range(len(nn_params)):
@@ -107,6 +108,7 @@ def _h_theta(nn_params, X):                 #E.g. Theta1: (25,401), Theta2: (10,
         else: aa = np.c_[np.ones(aa.shape[0]),aa]; zz = np.dot(nn_params[i],aa.T).T ; aa = sigmoid(zz)
     a3 = aa                            
     return a3
+
 def _add_regCost(nn_params,y,lambdaa):
     m = float(len(y))
     reg_j = 0
@@ -114,6 +116,7 @@ def _add_regCost(nn_params,y,lambdaa):
         reg_j += np.sum(nn_params[i][:,1:]**2)  # [:,1:]:we don't regularize the terms that correspond to the bias 
     reg_j = (lambdaa/(2.0 * m)) * reg_j
     return reg_j
+
 def _add_KL_term(nn_params, sparsityParam, beta, X):
     ro = float(sparsityParam)
     W1 = nn_params[0]
@@ -126,6 +129,7 @@ def _add_KL_term(nn_params, sparsityParam, beta, X):
 #    print "a2.shape, ro_h.shape, theta1.shape:", a2.shape, ro_h.shape, nn_params[0].shape			# (100, 25) (25,) (25, 65)
     kl_term = beta * np.sum( ( ro * np.log(ro/ro_h) ) + ( (1 - ro) * np.log((1-ro)/(1-ro_h)) ) )
     return kl_term
+
 def _reshape_theta(theta, input_layer_size, hidden_layer_size, num_labels):
     #Theta1: (25,401), Theta2: (10,26), X: (5000,401)
     theta1 = np.reshape(theta[0:hidden_layer_size*(input_layer_size + 1)],(hidden_layer_size,input_layer_size + 1))
@@ -136,7 +140,6 @@ def _fix_y(y,num_labels):
     for i in range(len(y)):
         yy[i] = 1
     if 0 :print y[2080], yy[2080]
-#    print "yy.shape:", yy.shape		#(200,200)
     return yy
 
 def sparseAutoencoderCost(theta, input_layer_size, hidden_layer_size, num_labels, X, y, lambdaa, sparsityParam, beta, reshape_theta=True):
