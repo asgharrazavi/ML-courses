@@ -28,9 +28,6 @@ def sampleIMAGES():
     patchsize = 8  # we'll use 8x8 patches 
     numpatches = 10000
     patches = np.zeros((patchsize*patchsize, numpatches))
-#    img_id = np.random.choice(range(10),1)
-#    image = images[:,:,img_id] 
-#    print "selected image id:", img_id
     for i in range(numpatches):
     	img_id = np.random.choice(range(10),1)
     	image = images[:,:,img_id] 
