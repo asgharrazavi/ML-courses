@@ -35,7 +35,6 @@ def sampleIMAGES():
         image = images[:,:,img_id]
         ind_x = np.random.choice(range(image.shape[0]-patchsize),1).astype(int)
         ind_y = np.random.choice(range(image.shape[0]-patchsize),1).astype(int)
-#  	print ind_x, ind_y
         img = image[ind_x[0]:ind_x[0]+patchsize,ind_y[0]:ind_y[0]+patchsize].flatten()
         patches[:,i] = img
     return patches
@@ -70,7 +69,6 @@ def display_network(patches,num=200):
         ax1.imshow(img,norm=LogNorm(),cmap='gray')
         ax1.set_xticklabels([])
         ax1.set_yticklabels([])
-  #     ax1.set_aspect('equal')
     plt.show()
 #display_network(patches,num=200) 
 #----------------------------------------------------------------------------
