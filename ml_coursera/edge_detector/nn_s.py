@@ -76,13 +76,10 @@ def initializeParameters(hidden_layer_size, input_layer_size):
 
     b1 = np.zeros((hidden_layer_size, 1))
     b2 = np.zeros((input_layer_size, 1))
-#    print "W1, W2, b1, b2, W1.shape, W2.shape, b1.shape, b2.shape:", W1, W2, b1, b2, W1.shape, W2.shape, b1.shape, b2.shape
     print "W1.shape, W2.shape, b1.shape, b2.shape:",  W1.shape, W2.shape, b1.shape, b2.shape
     # Convert weights and bias gradients to the vector form.
     # This step will "unroll" (flatten and concatenate together) all 
     # your parameters into a vector, which can then be used with minFunc. 
-    #theta = [W1(:) ; W2(:) ; b1(:) ; b2(:)];
-#    theta = np.concatenate((W1.flatten(),W2.flatten(),b1.flatten(),b2.flatten()))
     theta = np.concatenate((W1.flatten(),b1.flatten(),W2.flatten(),b2.flatten()))
     return theta
 #theta = initializeParameters(hidden_layer_size, input_layer_size)
@@ -126,12 +123,10 @@ def _add_KL_term(nn_params, sparsityParam, beta, X):
     ind1, ind2 = (ro_h == 0) , (ro_h == 1)
     ro_h[ind1] = 1e-10
     ro_h[ind2] = 1-1e-10
-#    print "a2.shape, ro_h.shape, theta1.shape:", a2.shape, ro_h.shape, nn_params[0].shape			# (100, 25) (25,) (25, 65)
     kl_term = beta * np.sum( ( ro * np.log(ro/ro_h) ) + ( (1 - ro) * np.log((1-ro)/(1-ro_h)) ) )
     return kl_term
 
 def _reshape_theta(theta, input_layer_size, hidden_layer_size, num_labels):
-    #Theta1: (25,401), Theta2: (10,26), X: (5000,401)
     theta1 = np.reshape(theta[0:hidden_layer_size*(input_layer_size + 1)],(hidden_layer_size,input_layer_size + 1))
     theta2 = np.reshape(theta[hidden_layer_size*(input_layer_size + 1):] ,(num_labels, hidden_layer_size + 1))
     return [theta1, theta2]
@@ -227,7 +222,6 @@ lambdaa = 0.0001     		# weight decay parameter
 beta = 3.0            		# weight of sparsity penalty term       
 
 patches = np.loadtxt('patches2.txt',delimiter=',')
-#patches = patches[:,::2]				#patches:(64,10000)
 X = patches.T
 y = patches.T
 num_labels = X.shape[0]
@@ -253,7 +247,6 @@ if debug:
 #----check gradient against numerical gradient--
     numgrad = computeNumericalGradient(sparseAutoencoderCost,initial_nn_params)
     np.savetxt('num_grad_unrolled_debug.txt',numgrad)
-#    print grad[0][0:10], numgrad[0:10]
 def plot_num_gradient(grad,numgrad):
     unrolled_grad = []
     for i in range(len(grad)):
@@ -295,7 +288,6 @@ def plot_Theta1(Theta1):
 	print "i,||x||^2:", i, np.sum(img**2)
 	img  = img / float(np.sqrt(np.sum(img**2)))
         plt.imshow(np.rot90(img),cmap='gray')
-#        plt.imshow(np.rot90(img),cmap='gray',norm=LogNorm())
         plt.xlim([0,8])
         plt.ylim([0,8])
         plt.xticks([])
