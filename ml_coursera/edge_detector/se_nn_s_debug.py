@@ -263,7 +263,6 @@ if debug:
     initial_b1 = debug_randInitializeWeights(hidden_layer_size, 0)
     initial_b2 = debug_randInitializeWeights(num_labels, 0)
     print " initial_Theta1.shape, initial_b1.shape, initial_Theta2.shape, initial_b2.shape", initial_Theta1.shape, initial_b1.shape, initial_Theta2.shape, initial_b2.shape
-#    print " initial_Theta1, initial_b1, initial_Theta2, initial_b2", initial_Theta1, initial_b1, initial_Theta2, initial_b2
     initial_nn_params = [initial_Theta1, initial_b1, initial_Theta2, initial_b2]
     theta = []
     for i in range(len(initial_nn_params)): theta.extend(initial_nn_params[i].flatten())
