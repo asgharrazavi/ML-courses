@@ -34,13 +34,6 @@ trainLabels = train_test_lab[0:numTrain]
 testData = train_test_img[:,numTrain:]
 testLabels = train_test_lab[numTrain:]
 
-
-#trainData   = images[:, labeledSet[0:numTrain]]
-#trainLabels = labels[labeledSet[0:numTrain]]
-
-#testData   = images[:, labeledSet[numTrain:]]
-#testLabels = labels[labeledSet[numTrain:]]
-
 # Output Some Statistics
 print '# examples in unlabeled set: %d\n' %unlabeledData.shape[1]                       # 29404 
 print '# examples in supervised training set: %d\n\n' %trainData.shape[1]               # 7824                          
@@ -106,7 +99,6 @@ def computeNumericalGradient(theta, numClasses, inputSize, lambdaa, inputData, l
 #------parameters---------------------------
 inputSize = 28 * 28; # Size of input vector (MNIST images are 28x28)
 numClasses = 10;     # Number of classes (MNIST images fall into 10 classes)
-
 lambdaa = 1e-4;      # Weight decay parameter
 inputData = images
 #-----------------------------------------
@@ -114,7 +106,6 @@ inputData = images
 #-------------------Debugging------------------------------------------
 Debug = False
 if Debug:
-#    inputSize = 8 
     images = images[:,::10000]
     labels = labels[::10000]
     #Randomly initialise theta
