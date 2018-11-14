@@ -107,7 +107,6 @@ inputData = images
 #-------------------Debugging------------------------------------------
 Debug = False
 if Debug:
-#    inputSize = 8 
     images = images[:,::10000]
     labels = labels[::10000]
     #Randomly initialise theta
@@ -142,7 +141,6 @@ def train_nn():
     theta = np.reshape(out[0], (numClasses, inputSize))
     np.savetxt('trained_theta_raw.txt',theta)
     return theta
-#train_nn()
 #-----------------------------------------------------------------------------------------------
 
 #--------Predict-------------
