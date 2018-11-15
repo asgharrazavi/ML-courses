@@ -1,2 +1,1 @@
-## Python Scripts for Coursera Machine Learning course by Andrew Ng
-https://www.coursera.org/learn/machine-learning
+## Python scripts for unsupervised machine learning to learn a function that detects edges in images
