@@ -354,7 +354,6 @@ def plot_Theta1(Theta1):
     plt.show()
 #-----------------------------------
 
-
 #--------plot W1------------
 def plot_w1(images):
     print 'plotting images.shape:', images.shape
@@ -383,4 +382,3 @@ def plot_w1(images):
 Theta1 = np.loadtxt('trained_W1.txt')
 print "W1.shape:", Theta1.shape
 plot_w1(np.dot(Theta1[:,1:],ZCAWhite).T)
-#plot_Theta1(Theta1)
