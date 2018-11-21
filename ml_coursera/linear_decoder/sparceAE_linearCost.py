@@ -11,65 +11,12 @@ from numba import autojit
 import time
 from tqdm import tqdm
 
-#'''''''''''''''''''''''''''''''''''''''''''''''''''''''''These are data for sparce autoencoder'''''''''''''''''''''''''''''''''''''''''''''''''''''
-#-----------loading data----------------
-#data = io.loadmat('IMAGES.mat')
-#print data.keys()
-#images = data['IMAGES']
-#print 'images.shape:', images.shape			# (512, 512, 10)
-def plot():
-    plt.figure(figsize=(20,7))
-    for i in range(images.shape[2]):
-        plt.subplot(2,5,i+1)
-        plt.imshow(images[:,:,i],norm=LogNorm())
-    plt.show()
-#plot()
-#--------------------------------------
-#---------sampleIMAGES---------------------------------------------------------------------------------------------------------
-def sampleIMAGES():
-    patchsize = 8  # we'll use 8x8 patches 
-    numpatches = 20000
-    patches = np.zeros((patchsize*patchsize, numpatches))
-#    img_id = np.random.choice(range(10),1)
-#    image = images[:,:,img_id]
-#    print "selected image id:", img_id
-    for i in range(numpatches):
-        img_id = np.random.choice(range(10),1)
-        image = images[:,:,img_id]
-        ind_x = np.random.choice(range(image.shape[0]-patchsize),1).astype(int)
-        ind_y = np.random.choice(range(image.shape[0]-patchsize),1).astype(int)
-#       print ind_x, ind_y
-        img = image[ind_x[0]:ind_x[0]+patchsize,ind_y[0]:ind_y[0]+patchsize].flatten()
-        patches[:,i] = img
-    return patches
-def get_patches_s():
-    patches = sampleIMAGES()
-    patches2 = np.array([patches[:,i] - np.mean(patches[:,i]) for i in range(patches.shape[1]) ]).T
-    pstd3 = 3 * np.std(patches2.flatten())
-    ind_min = (patches2 < -pstd3)
-    ind_max = (patches2 >  pstd3)
-    patches2[ind_min] = -pstd3
-    patches2[ind_max] = pstd3
-    patches2 = patches2 / float(pstd3)
-    print "min(patches2), max(patches2):", np.min(patches2), np.max(patches2)
-    # Rescale from [-1,1] to [0.1,0.9]
-    patches = (patches2 + 1) * 0.4 + 0.1;
-    print "min, max:", np.min(patches), np.max(patches)
-    print "patches.shape:", patches.shape				# (64, 20000) 
-    return patches
-#patches = get_patches_s() 
-#I was supposed to Squash data to [0.1, 0.9] since we use sigmoid as the activation function in the output layer by 
-#"Truncate to +/-3 standard deviations and scale to -1 to 1" and "Rescale from [-1,1] to [0.1,0.9]"
-##I did it!
-#------------------------------------------------------------------------------------------------------------------------------
-#''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
 #'''''''''''''''''''''''''''''''''''''''''''''''''''''''These are data for Linear decoder'''''''''''''''''''''''''''''''''''''''''
 #-----------loading data----------------
-#data = io.loadmat('stlSampledPatches.mat')
-#print data.keys()
-#images = data['patches']#[:,::10000]
-#print 'images.shape:', images.shape			# (192, 100000)
+data = io.loadmat('stlSampledPatches.mat')
+print data.keys()
+images = data['patches']
+print 'images.shape:', images.shape			
 def plot(images):
     print 'plotting images.shape:', images.shape			# (192, 100000)
     plt.figure(figsize=(12,12))
