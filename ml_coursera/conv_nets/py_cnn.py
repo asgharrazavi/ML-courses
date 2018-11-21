@@ -8,17 +8,10 @@ import scipy.optimize as op
 #----load theta------
 W1 = np.loadtxt('../linear_decoder/trained_W1.txt')
 b1 = np.loadtxt('../linear_decoder/trained_b1.txt')
-#ZCAWhite = np.loadtxt('../linear_decoder/ZCAWhite.txt')
 print "W1.shape, b1.shape:", W1.shape, b1.shape
 #--------------------
 
 #------load images------
-#data = io.loadmat('stlSubset/stlTrainSubset.mat')
-#print data.keys()
-#trainImages = data['trainImages']
-#numTrainImages = data['numTrainImages']
-#trainLabels = data['trainLabels']
-
 data = io.loadmat('stlSubset/stlTestSubset.mat')
 trainImages = data['testImages']
 numTrainImages = data['numTestImages']
