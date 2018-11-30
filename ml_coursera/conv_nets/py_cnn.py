@@ -69,16 +69,12 @@ def check_Convolve(convolvedFeatures,W1,b1,images,ZCAWhite,meanPatch):
         imageNum = np.random.choice(range(8),1)[0]
         imageRow = np.random.choice(range(imageDim - patchDim),1)[0]
         imageCol = np.random.choice(range(imageDim - patchDim),1)[0] 
-#        print "featureNum, imageNum, imageRow, imageCol:", featureNum, imageNum, imageRow, imageCol 
-#	print "convImages.shape:", convImages.shape
 
         patch = convImages[imageRow:imageRow + patchDim , imageCol:imageCol + patchDim , :, imageNum].flatten()
         patch = patch - meanPatch
         patch = np.dot(ZCAWhite , patch)
         
         features = feedForwardAutoencoder(W1,b1,patch).T			# (400,192)
-#        print "features.shape, convolvedFeatures0.shape:", features.shape, convolvedFeatures.shape	# (400, 8, 56, 56) 
-#  	print convolvedFeatures[featureNum, imageNum, imageRow, imageCol]
 	print "%1.20f, %1.20f" %(features[featureNum,0], convolvedFeatures[featureNum, imageNum, imageRow, imageCol])
         if abs(features[featureNum,0] - convolvedFeatures[featureNum, imageNum, imageRow, imageCol]) > 1e-9:
             print('Convolved feature does not match activation from autoencoder\n')
@@ -106,7 +102,6 @@ def cnnPool(poolDim, convolvedFeatures):
     convolvedDim = convolvedFeatures.shape[2]
 				# 400		8		56/19					56/19
     pooledFeatures = np.zeros((numFeatures, numImages,  convolvedDim / poolDim, 		convolvedDim / poolDim))
-#    pooledFeatures = np.zeros((numFeatures, numImages, np.floor(convolvedDim / poolDim), np.floor(convolvedDim / poolDim)))
     for i in tqdm(range(numImages)):
 	for j in range(convolvedDim / poolDim):
 	    for k in range(convolvedDim / poolDim):
