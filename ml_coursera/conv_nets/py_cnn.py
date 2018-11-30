@@ -33,12 +33,10 @@ def feedForwardAutoencoder(W1, b1, X):
     a1 = X#.T
     try : B1 = np.array([b1[:,0] for i in range(X.shape[1])])
     except : B1 = np.array([b1 for i in range(X.shape[0])])
-#    print "W1.shape, a1.shape, B1.shape:", W1.shape,a1.shape, B1.shape
     try : z2 = np.dot(W1,a1).T
     except : z2 = np.dot(W1[:,1:],a1).T
     z2 = z2 + B1
     a2 = sigmoid(z2)
-#    a2 = np.c_[np.ones(a2.shape[0]),a2]
     return a2
 
 def cnnConvolve(patchDim, numFeatures, images, W, b, ZCAWhite, meanPatch):
@@ -56,7 +54,6 @@ def cnnConvolve(patchDim, numFeatures, images, W, b, ZCAWhite, meanPatch):
 		img = np.dot(img,ZCAWhite)
 		convolvedFeatures[:,i,j,k] = sigmoid(np.dot(W[:,1:],img) + b)
     print "convolvedFeatures.shape:", convolvedFeatures.shape
-#    print "convolvedFeatures:", convolvedFeatures
     return convolvedFeatures
 
 def check_Convolve(convolvedFeatures,W1,b1,images,ZCAWhite,meanPatch):
