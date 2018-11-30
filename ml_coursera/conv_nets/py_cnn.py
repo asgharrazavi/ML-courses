@@ -185,7 +185,7 @@ def run_sotmax():
     out = op.fmin_l_bfgs_b(softmaxCost,unrolled_theta,fprime=None,args=(numClasses, inputSize, softmaxLambda, softmaxX, softmaxY),maxfun=MaxIter, disp=1)
     theta = np.reshape(out[0], (numClasses, inputSize))
     np.savetxt('softmax_theta.txt',theta)
-#run_sotmax()
+run_sotmax()
 #----------------------------------------------------------------------------------------------------
 
 #----------- Test ----------
